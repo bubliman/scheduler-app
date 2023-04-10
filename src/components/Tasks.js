@@ -6,24 +6,21 @@ import Task from "./Task"
 
 const Tasks = (props) => {
     
-    let sleepStart = props.wakeTime - props.sleep * 60
-    let sleep = props.sleep * 60
-    if (sleepStart - sleep < 0) { 
-        sleepStart = sleepStart + (24 * 60)
-    }
-    if (sleep == undefined) {
-        sleep = 8 * 60
-    }
-    if (sleepStart == undefined) {
-        sleepStart = 7 * 60
-    }
+    let sleepStart = new Date
+    sleepStart.setHours(Math.floor((props.wakeTime - props.sleep * 60) / 60) < 0 ? (Math.floor((props.wakeTime - props.sleep * 60) / 60)) + 24 : Math.floor((props.wakeTime - props.sleep * 60) / 60))
+    sleepStart.setMinutes((props.wakeTime - props.sleep * 60) % 60)
+    sleepStart.setSeconds(0)
+    sleepStart.setMilliseconds(0)
+
     return (
     
         <div> 
         {props.tasks.length === 0 && <p className="add-notice">Please add a task to get started!</p>}
         <table className="table">
             <tbody>
+            {console.log(props.tasks)}
             {
+                
                 props.tasks.map((task) => (
                     <Task 
                         key={task.id} 
@@ -42,7 +39,7 @@ const Tasks = (props) => {
                         key={Date.now()} 
                         taskId={Date.now()}
                         taskText={'Sleep'} 
-                        duration={sleep}
+                        duration={props.sleep * 60}
                         
                         startTime={sleepStart}
                         

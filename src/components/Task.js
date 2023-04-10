@@ -4,26 +4,23 @@ import React from "react"
 
 
 const Task = (props) => {
-    let startHours = Math.floor(props.startTime / 60)
-    let startMinutes = (props.startTime % 60).toString().length > 1 ? props.startTime % 60 : '0' + (props.startTime % 60)
-    let endHours = Math.floor((props.startTime + props.duration) / 60)
-    let endMinutes = ((props.startTime + props.duration)  % 60).toString().length > 1 ? (props.startTime + props.duration)  % 60 : '0' + ((props.startTime + props.duration)  % 60)
-    if (endHours / 24 > 1) {
-        endHours -= 24 * Math.floor(endHours / 24)
+    const endTime = new Date 
+    const startTime = props.startTime
+    if (startTime != undefined) {
+        endTime.setTime(startTime)
+        endTime.setHours(endTime.getHours() + Math.floor(props.duration / 60))
+        endTime.setMinutes(endTime.getMinutes() + props.duration % 60)
     }
-    if (startHours / 24 > 1) {
-        startHours -= 24 * Math.floor(startHours / 24)
-    }
-    if (startHours.toString().length < 2) {
-        startHours = "0" + startHours
-    }
-    if (endHours.toString().length < 2) {
-        endHours = "0" + endHours
+    const currentTime = new Date
+    let highlight = false
+    if (currentTime.getTime() < endTime.getTime() && currentTime.getTime() > startTime.getTime()) {
+        highlight = true
     }
     
+    
     return (   
-        <tr className="table-row">
-            <td className="table-row_time">{`${startHours}:${startMinutes} - ${endHours}:${endMinutes}`}</td>
+        <tr className={ highlight == true ? "table-row  highlight" : "table-row"}>
+            <td className="table-row_time">{`${startTime && (startTime.toString()).substring(15, 21)} - ${endTime && (endTime.toString()).substring(15, 21)}`}</td>
             <td className="table-row__text">{props.taskText}</td> 
             <td>
             {props.form == true ? 

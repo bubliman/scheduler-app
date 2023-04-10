@@ -13,7 +13,7 @@ export default class Settings extends React.Component {
         return (
             <form className="container" onSubmit={this.handleSettingsForm}>
                 <label>Wake up time: </label>   
-                <select className="select" name="wakehours" defaultValue={localStorage.getItem('settings') ? Math.floor(JSON.parse(localStorage.getItem('settings')).wakeTime / 60) : 7}>
+                <select className="select select__dark" name="wakehours" defaultValue={localStorage.getItem('settings') ? Math.floor(JSON.parse(localStorage.getItem('settings')).wakeTime / 60) : 7}>
                     <option value="0">00</option>
                     <option value="1">01</option>
                     <option value="2">02</option>
@@ -41,7 +41,7 @@ export default class Settings extends React.Component {
                     <option value="24">24</option>
                 </select>  
                 :
-                <select className="select" name="wakeminutes" defaultValue={localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')).wakeTime % 60 : 0}>
+                <select className="select select__dark" name="wakeminutes" defaultValue={localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')).wakeTime % 60 : 0}>
                     <option value="0">00</option>
                     <option value="10">10</option>
                     <option value="20">20</option>
@@ -51,7 +51,7 @@ export default class Settings extends React.Component {
                 </select>
                 <br/>
                 <label>Amount of sleep: </label>
-                <select className="select" name ="sleep" defaultValue={localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')).sleep : 8}>
+                <select className="select select__dark" name ="sleep" defaultValue={localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')).sleep : 8}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

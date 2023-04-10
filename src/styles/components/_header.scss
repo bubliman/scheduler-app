@@ -3,6 +3,8 @@
     color: white;
     margin-bottom: $m-size;
     padding: $m-size 0;
+    display: flex;
+    justify-content: space-between;
     
 }
 
@@ -23,3 +25,8 @@
         margin-bottom: $xl-size;    
     }
 }
+.szh-menu {
+    background: $light-blue;
+    color: white;
+}
+

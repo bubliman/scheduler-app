@@ -37,3 +37,10 @@
     background-color: $danger;
     border-bottom: 0.3rem solid darken($danger, 10%);
 }
+.szh-menu-button {
+    background-color: $off-black;
+    border: none;
+    border: 0.1rem solid $off-white;
+    color:white;
+    padding: $s-size;
+}

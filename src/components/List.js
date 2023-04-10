@@ -3,16 +3,10 @@ import Tasks from "./Tasks"
 import AddTask from "./AddTask"
 import RemoveAll from "./RemoveAll"
 import Title from "./Title"
-import Settings from "./Settings"
 import Header from "./Header"
 
 let date = new Date
-date.setHours(20)
-date.setMinutes(32)
-date.setSeconds(0)
-date.setMilliseconds(0)
 
-console.log(date.getTime())
 
 export default class List extends React.Component {
     state = {
@@ -44,7 +38,6 @@ export default class List extends React.Component {
         if (prevState.wakeTime !== this.state.wakeTime || prevState.sleep !== this.state.sleep) {
             this.setTaskTime()
         }
-        console.log(prevState.tasks)
         
         for (let i = 0; i < this.state.tasks.length; i++) {
             if (prevState.tasks[i]) {
@@ -88,7 +81,6 @@ export default class List extends React.Component {
     totalTaskTime = () => {
         let totalTime = 0
         for (let i = 0; i < this.state.tasks.length; i++) {
-            console.log("count "+ i + " | total duration " + totalTime)
             totalTime += this.state.tasks[i]['duration']
         }
         return totalTime
@@ -98,12 +90,17 @@ export default class List extends React.Component {
         for (let i = 0; i < this.state.tasks.length; i++) {
             let startTime = this.state.wakeTime
             for (let k = 0; k < this.state.tasks.indexOf(this.state.tasks[i]); k++) {
-                console.log('setting ' + this.state.tasks[k]['text'])
                 startTime += this.state.tasks[k]['duration']
             }
+            let startTimeUTC = new Date
+            startTimeUTC.setHours(Math.floor(startTime / 60))
+            startTimeUTC.setMinutes(startTime % 60)
+            startTimeUTC.setSeconds(0)
+            startTimeUTC.setMilliseconds(0)
+            // console.log(startTimeUTC)
             this.setState(prevState => ({
                 tasks: prevState.tasks.map(
-                    task => task.id === this.state.tasks[i].id ? {id: task.id, text: task.text, duration: task.duration, startTime: startTime }: task
+                    task => task.id === this.state.tasks[i].id ? {id: task.id, text: task.text, duration: task.duration, startTime: startTimeUTC }: task
                 )
             }))
         }
@@ -111,7 +108,7 @@ export default class List extends React.Component {
     render() {
         return (
             <div>
-                <Header/>
+                <Header handleSettings={this.handleSettings} wakeTime={this.state.wakeTime} sleep={this.state.sleep} />
                 <div className="container">
                     <div className="widget">
                         <div className="widget-header">
@@ -122,7 +119,6 @@ export default class List extends React.Component {
                         <AddTask addTask={this.addTask} tasks={this.state.tasks} />
                     </div>
                 </div>
-                <Settings handleSettings={this.handleSettings} wakeTime={this.state.wakeTime} sleep={this.state.sleep} />
             </div>
         )
     } 
