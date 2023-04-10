@@ -1,0 +1,12 @@
+.select {
+    background: $light-blue;
+    border: none;
+    border-bottom: 0.3rem solid darken($dark-blue, 10%);
+
+    color: white;
+
+}
+
+.select__dark {
+    background: $dark-blue;
+}

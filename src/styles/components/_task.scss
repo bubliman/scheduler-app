@@ -1,0 +1,36 @@
+
+.table-row {
+    
+    // padding:  0 2%;
+    
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid lighten($light-blue, 10%);
+    border-top: 1px solid lighten($light-blue, 10%);
+    margin: 0 auto;
+    padding: $s-size $s-size;
+
+}
+
+.table-row__text {
+    flex-grow: 1;
+    // text-align: start;
+    // padding: 0 30px;
+    // border-left: 1px solid lighten($light-blue, 10%);
+    color:white;
+    font-weight: 500;
+    font-size: 1.6rem;
+    // height: 50px;
+    margin: 0;
+    word-break: break-all;
+}
+
+.table {
+    width: 100%;
+    
+}
+
+.add-notice {
+    text-align: center;
+}

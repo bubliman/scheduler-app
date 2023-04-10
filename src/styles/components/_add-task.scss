@@ -1,0 +1,67 @@
+.add-task-error {
+    color: $off-white;
+    font-style: italic;
+    margin: $m-size 0 0 0;
+    padding: 0 $m-size;
+}
+
+.add-task {
+    display: flex;
+    flex-direction: column;
+    padding: $m-size;
+}
+
+.add-task__input {
+    flex-grow: 1;
+    background: $dark-blue;
+    border: none;
+    border-bottom: 0.3rem solid darken($dark-blue, 10%);
+    margin: 0 $s-size $s-size 0;
+    padding: $s-size;
+    color: $off-white;
+}
+.inputs {
+    display:flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+
+.add-task__select {
+    margin: 0 0 $s-size 0;
+}
+
+.error {
+    color: lighten(red, 20%);
+    text-align: center;
+}
+
+@media (min-width: $desktop-breakpoint) {
+    .add-task {
+        flex-direction: row;
+    }
+    .add-task__input {
+        
+        margin: 0 $s-size 0 0;
+    }
+    .add-task__select {
+        margin: 0 $s-size 0 0;
+    }
+}
+.shake {
+    animation: shake 0.5s;
+    color: lighten(red, 20%);
+}
