@@ -1,6 +1,7 @@
-
 // entry -> output
 const path = require('path')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 
 module.exports = {
     mode: 'production',
@@ -23,11 +24,18 @@ module.exports = {
         }, {
             test: /\.s?css$/,
             use: [
-                'style-loader',
-                'css-loader',
-                'sass-loader'
-            ]
+                MiniCssExtractPlugin.loader,
+                "css-loader",
+                {
+                  loader: "sass-loader",
+                },
+              ],
         }]
     },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "style.css",
+        })
+    ],
     devtool: 'source-map'
 }
